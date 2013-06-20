@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+ -->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <mytunes_report translate="title" module="mytunes">
+                    <title>Mytunes GEMA Report</title>
+                    <action>mytunes/adminhtml_report/gemareport</action>
+                    <sort_order>900</sort_order>
+                </mytunes_report>
+            </children>
+        </sales>
+    </menu>
+</config>

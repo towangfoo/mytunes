@@ -1,0 +1,9 @@
+.mytunes_artist {
+    font-style:italic;
+}
+
+#opc-review p.sku {
+    margin:0 0 0 1em;
+    font-style:italic;
+    font-size:0.9em;
+}

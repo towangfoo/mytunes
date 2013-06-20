@@ -1,0 +1,16 @@
+<?php
+/**
+ * encapsulating html for the accordion sections in the Mytunes Options edit tab.
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+?>
+<div id="alert_messages_block"><?php echo $this->getMessageHtml() ?></div>
+
+<div class="entry-edit">
+<?php echo $this->getChildHtml('accordion') ?>
+</div>

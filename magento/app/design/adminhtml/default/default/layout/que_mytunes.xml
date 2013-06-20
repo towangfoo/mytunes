@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Layout updates for mytunes integration in admin interface.
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+-->
+
+<layout version="0.1.1">
+
+    <!-- add product Edit tab for Mytunes Products -->
+    <adminhtml_catalog_product_mytunes>
+        <reference name="head">
+            <action method="addJs"><script>jquery/jquery-1.4.2.min.js</script></action>
+            <action method="addJs"><script>jquery/jquery-noconflict.js</script></action>
+            <action method="addJs"><script>mytunes/jplayer/jquery.jplayer.min.js</script></action>
+            <action method="addJs"><script>mytunes/adminhtml.js</script></action>
+            <action method="addItem">
+                <type>skin_css</type> 
+                <name>css/mytunes/mytunes.css</name> 
+            </action> 
+        </reference>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>mytunes_options</name>
+                <block>mytunes/adminhtml_catalog_product_edit_tab_mytunes</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_mytunes>
+    
+    <!-- add Tab to convert Simple Products to Mytunes Products -->
+    <adminhtml_catalog_product_simple>
+        <reference name="head">
+            <action method="addJs"><script>mytunes/adminhtml.js</script></action>
+        </reference>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>mytunes_transform</name>
+                <block>mytunes/adminhtml_catalog_product_edit_tab_simple</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_simple>
+    
+    <!-- Add item renderer to order view -->
+    <adminhtml_sales_order_view>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_order_view_items_renderer_default</block>
+                <template>que/mytunes/sales/order/view/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_view>
+    
+    <!-- Add item renderer to new invoice -->
+    <adminhtml_sales_order_invoice_new>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/invoice/create/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+    
+    <!-- Add item renderer to invoice uptdateqty -->
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/invoice/create/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+    
+    <!-- Add item renderer to invoice view -->
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/invoice/view/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+    
+    <!-- Add item renderer to creditmemo new -->
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/creditmemo/create/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+    
+    <!-- Add item renderer to creditmemo updateqty -->
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="order_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/creditmemo/create/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+    
+    <!-- Add item renderer to creditmemo view -->
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_items">
+            <action method="addItemRender">
+                <type>mytunes</type>
+                <block>adminhtml/sales_items_renderer_default</block>
+                <template>que/mytunes/sales/order/creditmemo/view/items/renderer.phtml</template>
+            </action>
+            <action method="addColumnRender" module="que_mytunes">
+                <column>mytunes</column>
+                <block>mytunes/adminhtml_sales_items_column_name</block>
+                <template>que/mytunes/sales/items/column/name.phtml</template>
+            </action>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view>
+
+</layout>

@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Layout updates for mytunes player in frontend.
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+ -->
+<layout version="0.1.0">
+
+    <!-- Product listing -->
+    <catalog_category_default>
+        <reference name="product_list">
+            <action method="setTemplate"><template>que/mytunes/catalog/product/list.phtml</template></action>
+            <action method="setBlock"><type>mytunes/catalog_product_list</type></action>
+        </reference>
+    </catalog_category_default>
+
+    <!-- Product view -->
+    <catalog_product_view>
+        <!-- Add stylesheets and scripts -->
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mytunes.css</stylesheet></action>
+            <action method="addCss"><stylesheet>css/mytunes.jplayer.blue.monday.css</stylesheet></action>
+            <action method="addJs"><script>mytunes/jplayer/jquery.jplayer.min.js</script></action>
+            <action method="addJs"><script>mytunes/player.js</script></action>
+        </reference>
+        <reference name="product.info">
+            <!-- add Mytunes player template -->
+            <block type="mytunes/player" name="mytunes.product.player" as="mytunes.product.player" template="que/mytunes/player.phtml" before="-">
+                <action method="addToParentGroup"><group>detailed_info</group></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+    
+    <!-- Use stock and price template on details page from Simple Product -->
+    <PRODUCT_TYPE_mytunes translate="label" module="catalog">
+        <label>Catalog Product View (Mytunes)</label>
+        <reference name="product.info">
+            <block type="catalog/product_view_type_simple" name="product.info.simple" as="product_type_data" template="catalog/product/view/type/simple.phtml">
+                <block type="core/text_list" name="product.info.simple.extra" as="product_type_data_extra"/>
+            </block>
+        </reference>
+    </PRODUCT_TYPE_mytunes>
+
+    <!-- Cart Item renderer -->
+    <checkout_cart_index>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mytunes.css</stylesheet></action>
+        </reference>
+        <reference name="checkout.cart">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/checkout_cart_item_renderer</block><template>que/mytunes/checkout/cart/item/default.phtml</template></action>
+        </reference>
+    </checkout_cart_index>
+    
+    <!-- Checkout Item renderer -->
+    <checkout_onepage_index>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mytunes.css</stylesheet></action>
+        </reference>
+        <reference name="checkout.onepage.payment">
+            <action method="setTemplate"><template>que/mytunes/checkout/onepage/payment.phtml</template></action>
+        </reference>
+    </checkout_onepage_index>
+    
+    <checkout_onepage_review>
+        <reference name="root">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/checkout_cart_item_renderer</block><template>que/mytunes/checkout/onepage/review/item.phtml</template></action>
+        </reference>
+    </checkout_onepage_review>
+
+
+<!-- Customer Login Area-->
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="mytunes"><name>mytunes_downloads</name><path>mytunes/customer/downloads</path><label>My Audio Downloads</label></action>
+        </reference>
+    </customer_account>
+    
+    <sales_order_view>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/mytunes.css</stylesheet></action>
+        </reference>
+        <reference name="order_items">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_view>
+    
+    <sales_order_invoice>
+        <reference name="invoice_items">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_invoice>
+
+    <sales_order_creditmemo>
+        <reference name="creditmemo_items">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_creditmemo>
+    
+    <mytunes_customer_downloads translate="label">
+        <label>My Audio Downloads</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="mytunes/customer_downloads_list" name="mytunes_customer_downloads_list" template="que/mytunes/customer/downloads/list.phtml" />
+        </reference>
+        <reference name="root">
+            <action method="setHeaderTitle" translate="title" module="mytunes"><title>My Audio Downloads</title></action>
+        </reference>
+    </mytunes_customer_downloads>
+
+
+<!-- Print pages -->
+
+    <sales_order_print>
+        <reference name="sales.order.print">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_print>
+
+    <sales_order_printinvoice>
+        <reference name="sales.order.print.invoice">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_printinvoice>
+
+    <sales_order_printcreditmemo>
+        <reference name="sales.order.print.creditmemo">
+            <action method="addItemRender"><type>mytunes</type><block>mytunes/sales_order_item_renderer</block><template>que/mytunes/sales/order/item/renderer.phtml</template></action>
+        </reference>
+    </sales_order_printcreditmemo>
+
+</layout>

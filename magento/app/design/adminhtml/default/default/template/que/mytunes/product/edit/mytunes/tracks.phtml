@@ -1,0 +1,87 @@
+<?php
+/**
+ * html to show the Mytunes Options tracks block in the product edit page
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+<div class="grid">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="data border">
+            <col width="1" />
+            <col width="25%" />
+            <col width="1" />
+            <col width="1" />
+            <col width="1" />
+            <col width="15%" />
+            <col width="15%" />
+            <col width="1" />
+            <thead>
+            <tr class="headings">
+                <th><span class="nobr"><?php echo $this->__('Track Nr.')?> <span class="required">*</span></span></th>
+                <th><?php echo $this->__('Title')?> <span class="required">*</span></th>
+                <th><span class="nobr"><?php echo $this->__('Single Download')?></span></th>
+                <th><?php echo $this->__('Price')?></th>
+                <th><span class="nobr"><?php echo $this->__('Max. Downloads')?></span></th>
+                <th><?php echo $this->__('File')?></th>
+                <th><?php echo $this->__('Sample Creation')?></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td colspan="8" class="a-right">
+                    <div class="mytunes-msg-box success" id="mytunes_msg_samples">
+                        <?php echo $this->__('Sample creation was successful') ?>
+                    </div>
+                    <?php echo $this->getAddButtonHtml()?> &nbsp; <?php echo $this->getUploadButtonHtml() ?> &nbsp; <?php echo $this->getSamplesButtonHtml() ?>
+                </td>
+            </tr>
+            </tfoot>
+            <tbody id="mytunes_tracklist_body"></tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+
+var trnsls = {};
+    trnsls.yes = '<?php echo $this->__('Yes')?>';
+    trnsls.no = '<?php echo $this->__('No')?>';
+    trnsls.unlimited = '<?php echo $this->__('Unlimited')?>';
+    trnsls.deleteItem = '<?php echo $this->__('Delete')?>';
+    trnsls.currency = '<?php echo Mage::app()->getStore($_product->getStoreId())->getBaseCurrencyCode() ?>';
+    trnsls.flashRequired = '<?php echo $this->jsQuoteEscape(Mage::helper('media')->__('This content requires last version of Adobe Flash Player. <a href="%s">Get Flash</a>', 'http://www.adobe.com/go/getflash/')) ?>';
+    trnsls.create_sample = '<?php echo $this->__('Create new Sample')?>';
+    trnsls.sample_start = '<?php echo $this->__('From (mm:ss)')?>';
+    trnsls.sample_end = '<?php echo $this->__('To (mm:ss)')?>';
+    trnsls.prelistenSample = '<?php echo $this->__('Play Sample')?>';
+
+var trackItems = new MytunesTrackItems('mytunes_tracklist_body', trnsls, <?php echo $this->getTrackItemsConfigJson() ?>);
+trackItems.setUploaderConfig(<?php echo $this->getFileUploaderConfigJson() ?>);
+trackItems.setJPlayerConfig(<?php echo $this->getJPlayerConfigJson() ?>);
+
+if($('mytunes_btn_add_track')) {
+    Event.observe('mytunes_btn_add_track', 'click', trackItems.add.bind(trackItems));
+}
+if($('mytunes_btn_massupload')) {
+    Event.observe('mytunes_btn_massupload', 'click', trackItems.massUpload.bind(trackItems));
+}
+if($('mytunes_btn_createsamples')) {
+    Event.observe('mytunes_btn_createsamples', 'click', trackItems.createSamples.bind(trackItems));
+}
+
+<?php foreach ($this->getExistingTracks() as $item):
+    $item->setPrice(Mage::helper('mytunes')->getFormattedPrice($item->getPrice()));
+?>
+trackItems.add(<?php echo $item->toJson()?>);
+<?php endforeach; ?>
+
+//]]>
+</script>

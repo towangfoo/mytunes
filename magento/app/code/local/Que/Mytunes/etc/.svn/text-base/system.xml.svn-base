@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+ -->
+<config>
+
+    <tabs>
+        <que_mytunes_tab translate="label" module="mytunes">
+            <label>Mytunes</label>
+            <sort_order>300</sort_order>
+        </que_mytunes_tab>
+    </tabs>
+
+    <sections>
+        <mytunes_settings translate="label" module="mytunes">
+            <label>Mytunes Settings</label> 
+            <tab>que_mytunes_tab</tab> 
+            <sort_order>310</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <globals translate="label">
+                    <label>Mytunes Global Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enabled</label>
+                            <comment><![CDATA[Globally <b>enable</b> or <b>disable</b> Mytunes.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <albumprice translate="label">
+                            <label>Default Album Price</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </albumprice>
+                        <trackprice translate="label">
+                            <label>Default Album Price</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trackprice>
+                        <unlimited_downloads translate="label">
+                            <label>Unlimited Downloads</label>
+                            <comment><![CDATA[Do not restrict number of downloads by default.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </unlimited_downloads>
+                        <num_downloads_if_limited translate="label">
+                            <label>Number of Downloads</label>
+                            <comment><![CDATA[How often should a user be able to download a track by default, when downloads are limited?]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </num_downloads_if_limited>
+                        <open_download_in_new_window translate="label">
+                            <label>Open Download in new window</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </open_download_in_new_window>
+                    </fields>
+                </globals>
+                <payment translate="label">
+                    <label>Payment Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <allowall translate="label" module="mytunes">
+                            <label>Allow all active payment methods</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowall>
+                        <restrict translate="label">
+                            <label><![CDATA[Do <b>NOT</b> use these methods with Mytunes orders]]></label>
+                            <comment><![CDATA[ 
+<script type="text/javascript">
+    Event.observe('mytunes_payment_allowall', 'change', function(){
+        allowall=$('mytunes_payment_allowall').value;
+        disabled = (allowall && allowall==1);
+        $('mytunes_payment_restrict').disabled = disabled;
+        if (disabled) {
+            $('row_mytunes_payment_restrict').hide();
+        } else {
+            $('row_mytunes_payment_restrict').show();
+        }
+    });
+    Event.observe(window, 'load', function() {
+        allowall=$('mytunes_payment_allowall').value;
+        disabled = (allowall && allowall==1);
+        if (disabled) {
+            $('row_mytunes_payment_restrict').hide();
+        }
+    });
+</script>
+                            ]]></comment>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>mytunes/system_config_source_restrictpayments</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </restrict>
+                    </fields>
+                </payment>
+                <sox translate="label">
+                    <label>SoX Settings</label>
+                    <comment><![CDATA[
+                        <p>This section configures how <a target="_blank" href="http://sox.sourceforge.net/">SoX Sound eXchange</a> linux server packet is integrated for audio transcoding and Sample creation.</p>
+                    ]]></comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>300</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <binary translate="label">
+                            <label>Path to Sox Binary</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </binary>
+                        <min_version translate="label">
+                            <label>Minimum SoX version required</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </min_version>
+                        <transcode_ogg translate="label">
+                            <label>Enable OGG transcoding</label>
+                            <comment><![CDATA[Shall samples be transcoded to OGG Vorbis format for HTML5 audio player in Browsers like Firefox, Opera?]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </transcode_ogg>
+                        <trim_start_default translate="label">
+                            <label>Sample Start Marker</label>
+                            <comment><![CDATA[Use format <b>[MM:SS]</b> or [HH:MM:SS]]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trim_start_default>
+                        <trim_end_default translate="label">
+                            <label>Sample End Marker</label>
+                            <comment><![CDATA[Use format <b>[MM:SS]</b> or [HH:MM:SS]]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </trim_end_default>
+                        <fade_duration_default translate="label">
+                            <label>Fade Duration</label>
+                            <comment><![CDATA[in seconds]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fade_duration_default>
+                        <autorename_samples translate="label">
+                            <label>Autorename Samples</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </autorename_samples>
+                    </fields>
+                </sox>
+            </groups>
+        </mytunes_settings>
+    </sections>
+</config>

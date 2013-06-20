@@ -1,0 +1,101 @@
+<?php
+/**
+ * Html to show GEMA report page.
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+
+// @var Que_Mytunes_Model_Sales_Report_Gema
+$_data = $this->getReportCollection();
+
+$_even = false;
+$_total_sold = 0;
+$_total_downloaded = 0;
+$_total_turnover = 0.0;
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<div class="mytunesadmin-report-period">
+    <h3>
+        <?php echo $this->__('from') ?>
+        <?php echo $_data->getFrom() ?>
+        <?php echo $this->__('to') ?>
+        <?php echo $_data->getTo() ?>
+    </h3>
+</div>
+<div class="mytunesadmin-report-grid">
+    <div class="grid">
+        <table class="data" cellspacing="0">
+            <colgroup>
+                <col />
+                <col />
+                <col width="120"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="120"/>
+            </colgroup>
+            <thead>
+                <tr class="headings">
+                    <th class="no-link"><?php echo $this->__('Artist') ?></th>
+                    <th class="no-link"><?php echo $this->__('Works') ?></th>
+                    <th class="no-link a-right"><?php echo $this->__('Price per Item') ?></th>
+                    <th class="no-link a-right"><?php echo $this->__('Times sold') ?></th>
+                    <th class="no-link a-right"><?php echo $this->__('Times downloaded') ?></th>
+                    <th class="no-link a-right"><?php echo $this->__('Turnover') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if($_artists = $_data->getArtists()) : ?>
+                    <?php foreach ($_artists as $_artist) :
+                        $firstRow = true;
+                    ?>
+                        <?php foreach ($_data->getWorksByArtist($_artist['artist_id']) as $_work) : ?>
+                            <tr class="<?php if ($_even) echo 'even' ?>">
+                                <?php if ($firstRow) :
+                                    $firstRow = false;
+                                ?>
+                                    <td rowspan="<?php echo $_artist['works_count'] ?>"><?php echo $_artist['artist_name'] ?></td>
+                                <?php endif; ?>
+                                <td><strong><?php echo $_work['type'] ?>:</strong> <?php echo $_work['title'] ?></td>
+                                <td class="a-right"><?php echo $_work['price'] ?> €</td>
+                                <td class="a-right"><?php echo $_work['times_sold'] ?></td>
+                                <td class="a-right"><?php echo $_work['times_downloaded'] ?></td>
+                                <td class="a-right"><?php echo $_work['times_sold'] * $_work['price'] ?> €</td>
+                            </tr>
+                    <?php
+                            $_even = !$_even;
+                            $_total_sold += $_work['times_sold'];
+                            $_total_downloaded += $_work['times_downloaded'];
+                            $_total_turnover += $_work['times_sold'] * $_work['price'];
+                            endforeach; // works
+                        endforeach; // artists
+                    ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong><?php echo $this->__('Total') ?></strong></td>
+                        <td class="a-right"><?php echo $_total_sold ?></td>
+                        <td class="a-right"><?php echo $_total_downloaded ?></td>
+                        <td class="a-right"><?php echo $_total_turnover ?> €</td>
+                    </tr>
+                </tfoot>
+                <?php else : ?>
+                    <tr>
+                        <td colspan="6" class="empty-text a-center">
+                            <?php echo $this->__('No items found.') ?>
+                        </td>
+                    </tr>
+                <?php endif; // periods ?>
+            </tbody>
+        </table
+    </div>
+</div>

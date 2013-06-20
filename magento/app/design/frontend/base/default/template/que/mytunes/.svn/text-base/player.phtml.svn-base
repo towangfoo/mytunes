@@ -1,0 +1,30 @@
+<?php
+/**
+ * Html to display the audio player.
+ *
+ * TODO: License
+ *
+ * @category   Que
+ * @package    Que_Mytunes
+ * @author     Steffen Mücke <mail@quellkunst.de>
+ */
+?>
+<?php if ($this->hasPlayer()) : ?>
+
+<a name="prelisten" class="hidden">prelisten</a>
+<h2><?php echo $this->__('Mytunes Player') ?></h2>
+
+<div id="mytunes_player" class="mytunes_player">
+    <noscript><?php echo $this->__('You need JavaScript enabled in your browser to display this content.') ?></noscript>
+</div>
+
+<script type="text/javascript">
+// <[CDATA[
+jQuery(document).ready(function(){
+    var mytunes = new Mytunes();
+    mytunes.init("mytunes_player", <?php echo $this->getMytunesJsonConfig() ?>);
+});
+// ]]>
+</script>
+
+<?php endif; ?>

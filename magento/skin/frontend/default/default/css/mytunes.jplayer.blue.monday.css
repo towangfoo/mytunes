@@ -1,0 +1,256 @@
+/*
+ * Skin for jPlayer Plugin (jQuery JavaScript Library)
+ * http://www.happyworm.com/jquery/jplayer
+ *
+ * Skin Name: Blue Monday
+ *
+ * Copyright (c) 2010 Happyworm Ltd
+ * Dual licensed under the MIT and GPL licenses.
+ *  - http://www.opensource.org/licenses/mit-license.php
+ *  - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Author: Silvia Benvenuti
+ * Skin Version: 2.0
+ * Date: 29th April 2010
+ *
+ * Altered to fit Magento Skin by Steffen Mücke <mail@quellkunst.de>
+ */
+
+div.mytunes_player {
+
+	/* Edit the font-size to counteract inherited font sizing.
+	 * Eg. 1.25em = 1 / 0.8em
+	 */
+	font-size:1.25em;
+
+	font-family:Verdana, Arial, sans-serif;
+	line-height:1.6;
+	color: #666;
+
+	position: relative;
+	background-color:#eee;
+	border:1px solid #C4C6C8;
+}
+div.mytunes_player noscript {
+    display:block;
+    padding:1em;
+    text-align:center;
+    background-color:#ff9;
+}
+div.jp-single-player div.jp-interface {
+	border-bottom:none;
+}
+div.jp-playlist-player div.jp-interface {
+}
+
+div.mytunes_player ul.mytunes_controls {
+	list-style-type:none;
+	padding:0;
+	margin: 0;
+	height:60px;
+}
+div.mytunes_player ul.mytunes_controls li {
+	position: absolute;
+}
+div.mytunes_player ul.mytunes_controls a {
+	display: block;
+	position: absolute;
+	overflow:hidden;
+	text-indent:-9999px;
+}
+a.mytunes_controls_play,
+a.mytunes_controls_pause {
+	top:12px;
+	width:40px;
+	height:40px;
+	left:55px;
+}
+a.mytunes_controls_play {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 0 no-repeat;
+}
+a.mytunes_controls_play:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -41px 0 no-repeat;
+}
+a.mytunes_controls_pause {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -42px no-repeat;
+}
+a.mytunes_controls_pause:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -41px -42px no-repeat;
+}
+a.mytunes_controls_stop {
+	top:18px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -83px no-repeat;
+	width:28px;
+	height:28px;
+	left:137px;
+}
+a.mytunes_controls_stop:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -29px -83px no-repeat;
+}
+a.mytunes_controls_prev {
+	left:20px;
+	top:18px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -112px no-repeat;
+	width:28px;
+	height:28px;
+}
+a.mytunes_controls_prev:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -29px -112px no-repeat;
+}
+a.mytunes_controls_next {
+	left:102px;
+	top:18px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -141px no-repeat;
+	width:28px;
+	height:28px;
+}
+a.mytunes_controls_next:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -29px -141px no-repeat;
+}
+
+div.mytunes_progress {
+	position: absolute;
+	overflow:hidden;
+	top:29px;
+	background-color: #ddd;
+	width:266px;
+	height:9px;
+	left:212px;
+}
+div.mytunes_progress_load {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -202px repeat-x;
+	width:0px;
+	height:15px;
+	cursor: pointer;
+}
+div.mytunes_progress_play {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -218px repeat-x ;
+	width:0px;
+	height:15px;
+}
+a.mytunes_controls_volmin {
+	top:27px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -170px no-repeat;
+	width:18px;
+	height:15px;
+	left:529px;
+}
+a.mytunes_controls_volmin:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -19px -170px no-repeat;
+}
+a.mytunes_controls_volmax {
+	top:27px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -186px no-repeat;
+	width:18px;
+	height:15px;
+	left:597px;
+}
+a.mytunes_controls_volmax:hover {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") -19px -186px no-repeat;
+}
+
+div.mytunes_volume_bar {
+	position: absolute;
+	overflow:hidden;
+	top:32px;
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -250px repeat-x;
+	width:46px;
+	height:5px;
+	cursor: pointer;
+	right:40px;
+}
+div.mytunes_volume_bar_value {
+	background: url("../images/mytunes/jplayer.blue.monday.jpg") 0 -256px repeat-x;
+	width:0px;
+	height:5px;
+}
+div.mytunes_info_play_time,
+div.mytunes_info_total_time {
+	position: absolute;
+	top:39px;
+	width:266px;
+	font-size:.64em;
+	font-style:oblique;
+	left:211px;
+}
+div.mytunes_info_total_time {
+	text-align: right;
+}
+div.mytunes_playlist ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	background-color:#ddd;
+	font-size:.72em;
+}
+div.mytunes_playlist li {
+	padding:7px 20px 6px 45px;
+	border-bottom:1px solid #eee;
+}
+div.mytunes_playlist li.mytunes_playlist_item_last {
+	border-bottom:none;
+}
+div.mytunes_playlist li.mytunes_playlist_current {
+	list-style-type:square;
+	list-style-position:inside;
+	padding-left:33px;
+	background-color:#d5d5d5;
+}
+div.mytunes_playlist li.incart {
+    background-color:#c7fec9;
+    border-bottom-color:#C4C6C8;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options {
+    float:right;
+    height:18px;
+    display:block;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options span.singleprice,
+div.mytunes_playlist span.mytunes_playlist_item_options span.totalprice {
+    margin:0 0.3em 0 3em;
+    display:block; 
+    float:left;
+    font-weight:bold;
+    color:#C76200;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options span.message {
+    margin:0 0.3em 0 3em;
+    display:block; 
+    float:left;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options span.message.incart {
+    padding-left:22px;
+    background:transparent url(../images/mytunes/mytunes.png) left -62px no-repeat;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options a.tracktocart,
+div.mytunes_playlist span.mytunes_playlist_item_options a.albumtocart {
+    display:block;
+    float:left;
+    width:18px;
+    height:18px;
+    overflow:hidden;
+    text-indent:-9999px;
+    background:transparent url(../images/mytunes/mytunes.png) left top no-repeat;
+}
+div.mytunes_playlist span.mytunes_playlist_item_options a.albumtocart {
+    background-position:0 -20px;
+}
+div.mytunes_playlist li.mytunes_playlist_item_downloadAlbum {
+    background-color:#ffff99;
+    border:0;
+    border-top:1px solid #C4C6C8;
+    padding-left:20px;
+}
+div.mytunes_playlist li.mytunes_playlist_item_downloadAlbum.incart {
+    background-color:#b6f6b9;
+}
+div.mytunes_playlist li.mytunes_playlist_item_downloadAlbum span.new {
+    background:transparent url(../images/mytunes/mytunes.png) 0 -42px no-repeat;
+    width:20px;
+    height:18px;
+    overflow:hidden;
+    display:block;
+    float:left;
+    margin-right:5px;
+    text-indent:-9999px;
+}

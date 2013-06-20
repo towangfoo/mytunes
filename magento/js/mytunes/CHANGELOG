@@ -1,0 +1,14 @@
+0.2.0
+    * updated to jPlayer 2.0.0
+
+0.1.1->0.1.2
+    * added markup to show what album and tracks are in cart
+    * added minified version
+
+0.1.0 -> 0.1.1 [until @rev.28]
+    * added Labels to config for strings used in markup
+    * added display of prices for tracks and complete playlists
+    * added add-to-cart buttons for tracks and album
+    * added parentId as separate argument for init() to make config settings independent from HTML
+    * added base64-encoding for prelisten request skus
+    * fixed error with optional setup variable read-in
